@@ -4,8 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Form, Label } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
 import { toast } from 'react-toastify';
+import { addContact } from 'redux/contactsSlice';
 
 const schema = yup.object({
   name: yup.string().required('Name is required').trim(),
@@ -28,7 +28,7 @@ export const ContactForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const contacts = useSelector(state => state.contacts);
+  const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const onSubmit = data => {
