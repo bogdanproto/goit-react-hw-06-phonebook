@@ -32,7 +32,9 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
-    const isContactExist = contacts.some(({ phone }) => phone === data.phone);
+    const isContactExist = contacts.some(
+      ({ name }) => name.toLowerCase() === data.name.toLowerCase()
+    );
 
     if (isContactExist) {
       toast.error(`${data.name} is already in contacts`);
